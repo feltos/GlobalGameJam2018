@@ -14,13 +14,24 @@ public class PlayerCharacter : MonoBehaviour
     GameObject groundCheck;
     bool isGrounded;
     [SerializeField]
-    float springForce;
-    [SerializeField]
-    Animator springAnim;
-    [SerializeField]
     BoxCollider2D springCollider;
+    [SerializeField]
+    TrapsManager trapsManager;
 
-	void Start ()
+    public Rigidbody2D Body
+    {
+        get
+        {
+            return body;
+        }
+
+        set
+        {
+            body = value;
+        }
+    }
+
+    void Start ()
     {
         body = GetComponent<Rigidbody2D>();
 	}
@@ -42,14 +53,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
         {
-            //call other scripts TrapsManager
-        }
-
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Spring"))
-        {
-            springAnim.SetInteger("SpringTransition", 1);
-            body.velocity = new Vector2(body.velocity.x, body.velocity.y + springForce);
-           
+            trapsManager.CheckTraps();
         }
     }
 }
