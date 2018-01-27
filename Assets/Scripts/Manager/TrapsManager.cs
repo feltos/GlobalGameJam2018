@@ -22,7 +22,7 @@ public class TrapsManager : MonoBehaviour
         GAS,
         FLAME,
         BANANA_AXE,
-        ROTATIVE_SAW
+        ROTATIVE_BOULE
     }
     public Traps traps = Traps.PICS;
 
@@ -39,15 +39,18 @@ public class TrapsManager : MonoBehaviour
                 break;
 
             case Traps.GAS:
+                //anim work by himself
                 break;
 
             case Traps.FLAME:
+                //anim work by himself
                 break;
 
             case Traps.BANANA_AXE:
                 break;
 
-            case Traps.ROTATIVE_SAW:
+            case Traps.ROTATIVE_BOULE:
+                gameObject.transform.Rotate(Vector3.right * Time.deltaTime * 30);
                 break;
         }
         
