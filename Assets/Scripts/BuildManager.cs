@@ -10,13 +10,18 @@ public class BuildManager : MonoBehaviour {
     List<GameObject> grid;
     public GameObject cellForGrid;
 
+    LevelController levelController;
+
+    int SelectedObject = 1;
+    GameObject tmpObjectToPlace;
+
     struct Coord {
-        int x;
-        int y;
+        public int x;
+        public int y;
 
         public Coord PixelToCoord(float x, float y) {
             Coord tmp;
-            tmp.x = (int)x;
+            tmp.x = (int)x - 1;
             tmp.y = (int)y;
 
             return tmp;
@@ -31,6 +36,8 @@ public class BuildManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        levelController = FindObjectOfType<LevelController>();
+
         grid = new List<GameObject>();
 	    for(int i = 0; i < 50; i++) {
             for(int j = 0; j < 20; j++) {
@@ -51,6 +58,15 @@ public class BuildManager : MonoBehaviour {
             Vector3 pointeur = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             coord = coord.PixelToCoord(pointeur.x, pointeur.y);
             Debug.Log(coord.Write());
+
+            if(Input.GetButtonDown("Fire1")) {
+                Instantiate(levelController.prefabBrick[SelectedObject], new Vector2(coord.x, coord.y), Quaternion.identity);
+            }
+
+            if(tmpObjectToPlace != null) {
+                Destroy(tmpObjectToPlace);
+            }
+            tmpObjectToPlace = Instantiate(levelController.prefabBrick[SelectedObject], new Vector2(coord.x, coord.y), Quaternion.identity);
         }
 
         if(gridDispaly) {
@@ -59,11 +75,11 @@ public class BuildManager : MonoBehaviour {
 	}
 
     void DisplayGrid() {
-        for(int i = 0; i < grid.Capacity;i++) {
-            grid[i].SetActive(true);
-        }
+        //for(int i = 0; i < grid.Capacity;i++) {
+        //    grid[i].SetActive(true);
+        //}
 
-        gridDispaly = true;
+        //gridDispaly = true;
     }
 
     void HideGrid() {
