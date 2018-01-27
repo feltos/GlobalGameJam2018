@@ -19,12 +19,19 @@ public class LevelController : MonoBehaviour {
 
     public List<GameObject> prefabBrick;
 
+    List<GameObject> allObjectInLevel;
+
     // Use this for initialization
     void Start () {
-        map = new int[nbCaseLength, nbCaseHeight];
+        map = new int[nbCaseLength + 1, nbCaseHeight + 1];
 
-        for(int i = 0;i < nbCaseLength;i++) {
-            for(int j = 0;j < nbCaseHeight;j++) {
+        allObjectInLevel = new List<GameObject>();
+        for(int i = 0; i < nbCaseLength * nbCaseHeight;i++) {
+            allObjectInLevel.Add(null);
+        }
+
+        for(int i = 0;i != nbCaseLength;i++) {
+            for(int j = 0;j != nbCaseHeight;j++) {
                 map[i, j] = IDEmptyCase;
             }
         }
@@ -33,19 +40,23 @@ public class LevelController : MonoBehaviour {
     }
 
     void BuildDefaultMap() {
-        map[0, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(0, 10), Quaternion.identity);
-        map[1, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(1, 10), Quaternion.identity);
-        map[2, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(2, 10), Quaternion.identity);
+        AddObject(0, 3, 1);
+        AddObject(1, 3, 1);
+        AddObject(0, 0, 1);
+        AddObject(1, 0, 1);
+        AddObject(0, 7, 1);
+        AddObject(1, 7, 1);
+    }
 
-        map[6, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(6, 10), Quaternion.identity);
-        map[7, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(7, 10), Quaternion.identity);
-        map[8, 10] = 1;
-        Instantiate(prefabBrick[1], new Vector2(8, 10), Quaternion.identity);
+    public void AddObject(int x, int y, int index) {
+        map[x, y] = index;
+        allObjectInLevel[x + (y * x)] = Instantiate(prefabBrick[index], new Vector2(x, y), Quaternion.identity);
+    }
+
+    public void RemoveObject(int x, int y) {
+        map[x, y] =IDEmptyCase;
+        Destroy(allObjectInLevel[x + (y * x)]);
+        allObjectInLevel[x + (y * x)] = null;
     }
 	
 	// Update is called once per frame
@@ -53,10 +64,17 @@ public class LevelController : MonoBehaviour {
 		
 	}
 
-    bool CanPlace(int i, int j) {
+    public bool CanPlace(int i, int j) {
         bool isFree = true;
+        if(i < 0 || i > nbCaseLength || j < 0 || j > nbCaseHeight) {
+            return false;
+        }
 
         if(!IsEmpty(i, j)) {
+            isFree = false;
+        }
+
+        if(i == 0 || i == nbCaseLength) {
             isFree = false;
         }
 
