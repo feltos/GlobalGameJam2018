@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     Text text;
 
     [SerializeField]
-    float timeForARound = 10;
+    float timeForARound = 20;
 
     enum State {
         IDLE,
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     TimeRemaning timeRemaning;
 
     int round = 0;
-    const int MAX_ROUND = 8;
+    const int MAX_ROUND = 16;
 
     State state = State.IDLE;
     float currentTimer = 0;
@@ -55,6 +55,10 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(round > MAX_ROUND) {
+            state = State.END;
+        }
+        
         switch(state) {
             case State.IDLE:
                 break;
@@ -118,6 +122,7 @@ public class GameManager : MonoBehaviour {
                 break;
 
             case State.END:
+                buildManager.Stop();
                 if(p1win == p2win) {
                     text.text = "DRAW";
                 }else if(p1win > p2win) {
