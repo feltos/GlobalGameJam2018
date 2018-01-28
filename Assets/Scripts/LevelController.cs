@@ -19,6 +19,7 @@ public class LevelController : MonoBehaviour {
 
     int IDEmptyCase = 0;
     int IDStartCase = -1;
+    int IDEndCase = -2;
 
     #endregion
 
@@ -47,16 +48,27 @@ public class LevelController : MonoBehaviour {
     void BuildDefaultMap() {
         AddObject(0, 3, IDStartCase);
         AddObject(1, 3, 1);
-        AddObject(0, 0, 1);
-        AddObject(1, 0, 1);
-        AddObject(0, 7, 1);
-        AddObject(1, 7, 1);
+        AddObject(2, 3, 1);
+        AddObject(4, 3, 1);
+        AddObject(8, 3, 1);
+        AddObject(9, 3, 1);
+        AddObject(10, 3, 1);
+        AddObject(14, 3, 1);
+        AddObject(15, 3, 1);
+        AddObject(16, 3, 1);
+        AddObject(17, 3, IDEndCase);
     }
 
     public void AddObject(int x, int y, int index) {
         map[x, y] = index;
         if(index < 0) {
-            allObjectInLevel[x + (y * x)] = Instantiate(start, new Vector2(x, y), Quaternion.identity);
+            if(index == IDEndCase) {
+                allObjectInLevel[x + (y * x)] = Instantiate(end, new Vector2(x, y), Quaternion.identity);
+            }
+
+            if(index == IDStartCase) {
+                allObjectInLevel[x + (y * x)] = Instantiate(start, new Vector2(x, y), Quaternion.identity);
+            }
         } else {
             allObjectInLevel[x + (y * x)] = Instantiate(prefabBrick[index], new Vector2(x, y), Quaternion.identity);
         }

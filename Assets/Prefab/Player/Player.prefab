@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288048373947418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.48, y: 0.13, z: 0}
+  m_LocalPosition: {x: 22.170609, y: 3.8589883, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4317758313807352}
@@ -131,9 +131,8 @@ MonoBehaviour:
   speed: 4
   jumpForce: 5
   groundCheck: {fileID: 1686054198423092}
-  springForce: 13
-  springAnim: {fileID: 0}
   springCollider: {fileID: 0}
+  trapsManager: {fileID: 0}
 --- !u!212 &212971648547430884
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -165,8 +164,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1161251191
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 294871912b2f33c4bae304465241dfa2, type: 3}
   m_Color: {r: 0, g: 0.71034503, b: 1, a: 1}

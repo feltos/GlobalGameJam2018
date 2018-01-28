@@ -97,4 +97,12 @@ public class GameManager : MonoBehaviour {
     public void AddObject() {
         objectHasBeenDrop = true;
     }
+
+    public void PlayerWin() {
+        currentTimer = timeForARound;
+    }
+
+    public void PlayerDie() {
+        currentTimer = timeForARound;
+    }
 }

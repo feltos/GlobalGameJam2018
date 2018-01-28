@@ -16,8 +16,8 @@ TagManager:
   - Ground
   - Spring
   - 
-  - 
-  - 
+  - End
+  - Background
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 2753546545
+    locked: 0
+  - name: level
+    uniqueID: 2448824591
+    locked: 0
+  - name: player
+    uniqueID: 1161251191
     locked: 0
