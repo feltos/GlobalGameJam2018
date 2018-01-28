@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Spring : MonoBehaviour
 {
-    [SerializeField]
-    PlayerCharacter playerCharacter;
-
-    [SerializeField]
-    float springForce;
-    [SerializeField]
+    
     Animator springAnim;
 
-  
-
-    public void JumpPlayer()
+    private void Start()
     {
-        springAnim.SetInteger("SpringTransition", 1);
-        playerCharacter.Body.velocity = new Vector2(playerCharacter.Body.velocity.x, playerCharacter.Body.velocity.y + springForce);
+        springAnim = this.GetComponent<Animator>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            springAnim.SetInteger("SpringTransition", 1);
+        }
     }
 }

@@ -17,6 +17,7 @@ public class PlayerCharacter : MonoBehaviour
     BoxCollider2D springCollider;
     [SerializeField]
     Spring spring;
+    float springForce = 13;
 
     GameManager gameManager;
 
@@ -56,14 +57,15 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
         {
-            //fxdcth
+            gameManager.PlayerDie();
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("Spring"))
         {
-            spring.JumpPlayer();
+            body.velocity = new Vector2(body.velocity.x, body.velocity.y + springForce);
         }
 
-        if(collision.gameObject.layer == LayerMask.NameToLayer("End")) {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("End"))
+        {
             gameManager.PlayerWin();
         }
     }
