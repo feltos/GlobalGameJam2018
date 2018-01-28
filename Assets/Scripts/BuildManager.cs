@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class BuildManager : MonoBehaviour {
 
-    bool isRunning = true;
-    bool gridDispaly = false;
+    bool isRunning = false;
 
     List<GameObject> grid;
     public GameObject cellForGrid;
 
     LevelController levelController;
+    GameManager gameManager;
 
     int SelectedObject = 1;
     GameObject tmpObjectToPlace;
+
+    bool isFinished = false;
 
     struct Coord {
         public int x;
@@ -47,8 +49,9 @@ public class BuildManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         levelController = FindObjectOfType<LevelController>();
+        gameManager = FindObjectOfType<GameManager>();
 
-        grid = new List<GameObject>();
+        grid = new List<GameObject>(18 * 10);
 	    for(int i = 0; i < 18; i++) {
             for(int j = 0; j < 10; j++) {
                 GameObject tmpCell = Instantiate(cellForGrid, new Vector2(i, j), Quaternion.identity);
@@ -61,21 +64,24 @@ public class BuildManager : MonoBehaviour {
 	void Update () {
         if(isRunning) {
 
-            if(!gridDispaly) {
-                DisplayGrid();
-            }
-
             //Check where is the cursor
             Vector3 pointeur = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             coord = coord.PixelToCoord(pointeur.x, pointeur.y);
 
+            Color tmp = new Color(1,1,1,0.5f);
+
             //Manage Input
             if(Input.GetButtonDown("Fire1") && levelController.CanPlace(coord.x, coord.y) && SelectedObject != 0) {
+                
                 levelController.AddObject(coord.x, coord.y, SelectedObject);
+                gameManager.AddObject();
+                isFinished = true;
             }
 
             if(Input.GetButtonDown("Fire1") && !levelController.CanPlace(coord.x, coord.y) && SelectedObject == 0) {
                 levelController.RemoveObject(coord.x, coord.y);
+                gameManager.AddObject();
+                isFinished = true;
             }
 
             if(tmpObjectToPlace != null) {
@@ -83,26 +89,23 @@ public class BuildManager : MonoBehaviour {
             }
 
             //Change selected object
-            SelectObject(Input.GetAxis("Mouse ScrollWheel"));
+            if(!isFinished) {
+                SelectObject(Input.GetAxis("Mouse ScrollWheel"));
 
-            tmpObjectToPlace = Instantiate(levelController.prefabBrick[SelectedObject], new Vector3(coord.x, coord.y, -1), Quaternion.identity);
-            tmpObjectToPlace.GetComponent<SpriteRenderer>();
+                tmpObjectToPlace = Instantiate(levelController.prefabBrick[SelectedObject], new Vector3(coord.x, coord.y, -1), Quaternion.identity);
+                tmpObjectToPlace.GetComponent<SpriteRenderer>();
 
-            Color tmp = new Color(1,1,1,0.5f);
-            if(!levelController.CanPlace(coord.x, coord.y)) {
-                tmp.g = 0;
-                tmp.b = 0;
+                if(!levelController.CanPlace(coord.x, coord.y)) {
+                    tmp.g = 0;
+                    tmp.b = 0;
+                }
+
+                if(SelectedObject == 0) {
+                    tmp.a = 1;
+                }
+
+                tmpObjectToPlace.GetComponent<SpriteRenderer>().color = tmp;
             }
-
-            if(SelectedObject == 0) {
-                tmp.a = 1;
-            }
-
-            tmpObjectToPlace.GetComponent<SpriteRenderer>().color = tmp;
-        }
-
-        if(gridDispaly) {
-            HideGrid();
         }
 	}
 
@@ -123,22 +126,29 @@ public class BuildManager : MonoBehaviour {
     }
 
     void DisplayGrid() {
-        //for(int i = 0; i < grid.Capacity;i++) {
-        //    grid[i].SetActive(true);
-        //}
-
-        //gridDispaly = true;
+        for(int i = 0; i < grid.Capacity; i++) {
+            grid[i].SetActive(true);
+        }
     }
 
     void HideGrid() {
-        for(int i = 0;i < grid.Capacity;i++) {
+        for(int i = 0; i < grid.Capacity; i++) {
             grid[i].SetActive(false);
         }
-
-        gridDispaly = false;
     }
 
     public bool IsRunning() {
         return isRunning;
+    }
+
+    public void Launch() {
+        isFinished = false;
+        isRunning = true;
+        DisplayGrid();
+    }
+
+    public void Stop() {
+        isRunning = false;
+        HideGrid();
     }
 }

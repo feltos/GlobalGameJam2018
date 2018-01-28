@@ -8,12 +8,17 @@ public class LevelController : MonoBehaviour {
     int nbCaseHeight = 20;
     [SerializeField]
     int nbCaseLength = 50;
-    
+    [SerializeField]
+    GameObject start;
+    [SerializeField]
+    GameObject end;
+
     int[,] map;
 
     #region CONSTANT
 
     int IDEmptyCase = 0;
+    int IDStartCase = -1;
 
     #endregion
 
@@ -40,7 +45,7 @@ public class LevelController : MonoBehaviour {
     }
 
     void BuildDefaultMap() {
-        AddObject(0, 3, 1);
+        AddObject(0, 3, IDStartCase);
         AddObject(1, 3, 1);
         AddObject(0, 0, 1);
         AddObject(1, 0, 1);
@@ -50,7 +55,11 @@ public class LevelController : MonoBehaviour {
 
     public void AddObject(int x, int y, int index) {
         map[x, y] = index;
-        allObjectInLevel[x + (y * x)] = Instantiate(prefabBrick[index], new Vector2(x, y), Quaternion.identity);
+        if(index < 0) {
+            allObjectInLevel[x + (y * x)] = Instantiate(start, new Vector2(x, y), Quaternion.identity);
+        } else {
+            allObjectInLevel[x + (y * x)] = Instantiate(prefabBrick[index], new Vector2(x, y), Quaternion.identity);
+        }
     }
 
     public void RemoveObject(int x, int y) {
@@ -63,6 +72,10 @@ public class LevelController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public Vector3 GetStartPosition() {
+        return new Vector3(0,4,0);
+    }
 
     public bool CanPlace(int i, int j) {
         bool isFree = true;
