@@ -18,6 +18,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     Spring spring;
 
+    GameManager gameManager;
+
     public Rigidbody2D Body
     {
         get
@@ -34,6 +36,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start ()
     {
         body = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<GameManager>();
 	}
 	
 	void Update ()
@@ -58,6 +61,10 @@ public class PlayerCharacter : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Spring"))
         {
             spring.JumpPlayer();
+        }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("End")) {
+            gameManager.PlayerWin();
         }
     }
 }
