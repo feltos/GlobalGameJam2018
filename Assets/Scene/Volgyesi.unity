@@ -518,16 +518,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 13
       objectReference: {fileID: 0}
-    - target: {fileID: 114063868768953314, guid: 573543868885e6745a8a8b0193180200,
-        type: 2}
-      propertyPath: playerCharacter
-      value: 
-      objectReference: {fileID: 125214171}
-    - target: {fileID: 114063868768953314, guid: 573543868885e6745a8a8b0193180200,
-        type: 2}
-      propertyPath: springAnim
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 573543868885e6745a8a8b0193180200, type: 2}
   m_IsPrefabParent: 0
@@ -615,11 +605,6 @@ Prefab:
     - target: {fileID: 4689711085355704, guid: 4944c197ff343a9438be7cfd1b1473b2, type: 2}
       propertyPath: m_RootOrder
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 61980986373003782, guid: 4944c197ff343a9438be7cfd1b1473b2,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4944c197ff343a9438be7cfd1b1473b2, type: 2}
@@ -897,23 +882,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd91a9e866a56444792f457d9c611fa5, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1684432041 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1732957014507610, guid: 4944c197ff343a9438be7cfd1b1473b2,
-    type: 2}
-  m_PrefabInternal: {fileID: 976255105}
---- !u!114 &1684432046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1684432041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 924d83ddbbb392f49b720f02783d50ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traps: 3
 --- !u!1 &1968184922
 GameObject:
   m_ObjectHideFlags: 0

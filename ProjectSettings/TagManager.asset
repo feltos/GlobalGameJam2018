@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Spring
+  - Traps
+  - End
+  - Background
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: background
+    uniqueID: 3278819121
+    locked: 0
+  - name: level
+    uniqueID: 1093692327
+    locked: 0
+  - name: player
+    uniqueID: 1910075057
     locked: 0

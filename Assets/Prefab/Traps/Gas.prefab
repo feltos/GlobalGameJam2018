@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95982989932478754}
   - component: {fileID: 58953006755227500}
   - component: {fileID: 114063868768953314}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,9 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924d83ddbbb392f49b720f02783d50ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 0}
-  springForce: 13
-  springAnim: {fileID: 0}
   traps: 2
 --- !u!212 &212839802917448444
 SpriteRenderer:
