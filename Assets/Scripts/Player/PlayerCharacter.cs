@@ -16,7 +16,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField]
     BoxCollider2D springCollider;
     [SerializeField]
-    TrapsManager trapsManager;
+    Spring spring;
 
     public Rigidbody2D Body
     {
@@ -53,7 +53,11 @@ public class PlayerCharacter : MonoBehaviour
     {
         if(collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
         {
-            trapsManager.CheckTraps();
+            //fxdcth
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Spring"))
+        {
+            spring.JumpPlayer();
         }
     }
 }
