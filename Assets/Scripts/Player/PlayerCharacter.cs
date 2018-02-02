@@ -47,7 +47,7 @@ public class PlayerCharacter : MonoBehaviour
         body.velocity = new Vector2(speed * horizontal, body.velocity.y);
         isGrounded = Physics2D.Linecast(transform.position, groundCheck.transform.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0) && isGrounded)
         {
             body.velocity = body.velocity + Vector2.up * jumpForce;
         }

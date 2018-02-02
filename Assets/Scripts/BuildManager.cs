@@ -67,6 +67,7 @@ public class BuildManager : MonoBehaviour {
             //Check where is the cursor
             Vector3 pointeur = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             coord = coord.PixelToCoord(pointeur.x, pointeur.y);
+            
 
             Color tmp = new Color(1,1,1,0.5f);
 
@@ -89,7 +90,8 @@ public class BuildManager : MonoBehaviour {
             }
 
             //Change selected object
-            if(!isFinished) {
+            if(!isFinished)
+            {
                 SelectObject(Input.GetAxis("Mouse ScrollWheel"));
 
                 tmpObjectToPlace = Instantiate(levelController.prefabBrick[SelectedObject], new Vector3(coord.x, coord.y, -1), Quaternion.identity);
