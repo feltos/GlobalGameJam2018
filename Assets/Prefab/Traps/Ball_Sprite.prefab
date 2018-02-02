@@ -35,9 +35,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4801181996830544}
   - component: {fileID: 212043846913067658}
-  - component: {fileID: 61720866740126680}
   - component: {fileID: 114007683068775082}
   - component: {fileID: 114624649051663962}
+  - component: {fileID: 58380073175082044}
   m_Layer: 10
   m_Name: Ball_Sprite
   m_TagString: Untagged
@@ -65,15 +65,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786254952423710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.513, y: 1.332, z: 0}
+  m_LocalPosition: {x: -7.012686, y: 3.1090739, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4408167784995738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61720866740126680
-BoxCollider2D:
+--- !u!58 &58380073175082044
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -84,19 +84,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.012108445, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 0.64, y: 0.64}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: -0.24}
   serializedVersion: 2
-  m_Size: {x: 0.325181, y: 0.64}
-  m_EdgeRadius: 0
+  m_Radius: 0.28
 --- !u!114 &114007683068775082
 MonoBehaviour:
   m_ObjectHideFlags: 1

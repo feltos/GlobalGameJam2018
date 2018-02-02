@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288048373947418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.332, y: 0.241, z: 0}
+  m_LocalPosition: {x: -4.411704, y: 0.27486038, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4317758313807352}
@@ -116,8 +116,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.43691158, y: 0.4484694}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.38, y: 0.39}
+  m_EdgeRadius: 0.02
 --- !u!95 &95845899561918716
 Animator:
   serializedVersion: 3
@@ -182,8 +182,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1161251191
-  m_SortingLayer: 0
+  m_SortingLayerID: 1910075057
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ee0d9b6768a5f6f4fa2f071b48571444, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
